@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Tarefas</title>
+</head>
+<body>
+    <h1>Cadastro de Tarefas</h1>
+    <form id="formTarefa">
+        <input type="text" id="descricao" placeholder="Descrição da Tarefa" required>
+        <select id="status">
+            <option value="para_fazer">Para Fazer</option>
+            <option value="em_producao">Em Produção</option>
+            <option value="finalizada">Finalizada</option>
+        </select>
+        <button type="submit">Adicionar Tarefa</button>
+    </form>
+    <a href="kanban.html">Ir para o Kanban Board</a>
+
+    <script src="assets/um.js"></script>
+</body>
+</html>

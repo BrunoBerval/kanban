@@ -1,0 +1,2 @@
+.kanban { display: flex; justify-content: space-around; }
+.coluna { width: 30%; padding: 10px; border: 1px solid black; }
