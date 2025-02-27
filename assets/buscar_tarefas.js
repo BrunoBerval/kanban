@@ -1,9 +1,6 @@
 function carregarTarefas() {
     let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
-    document.getElementById("para_fazer").innerHTML = "<h2>Para Fazer</h2>";
-    document.getElementById("em_producao").innerHTML = "<h2>Em Produção</h2>";
-    document.getElementById("finalizada").innerHTML = "<h2>Finalizada</h2>";
-
+    
     tarefas.forEach(tarefa => {
         let postit = document.createElement("div");
         postit.classList.add("postit", tarefa.urgencia); // Adiciona a classe correspondente à urgência
@@ -37,6 +34,44 @@ function carregarTarefas() {
 
         // Adicionando o botão ao post-it
         postit.appendChild(deleteBtn);
+
+        // Criando o botão de avançar status da tarefa
+        let avancarStatusBtn = document.createElement("button");
+        avancarStatusBtn.textContent = ">>";
+        avancarStatusBtn.classList.add("avanca-btn");
+        avancarStatusBtn.onclick = function() {
+            if (tarefa.status === "para_fazer") {
+                tarefa.status = "em_producao";
+            } else if (tarefa.status === "em_producao") {
+                tarefa.status = "finalizada";
+            }
+
+            localStorage.setItem("tarefas", JSON.stringify(tarefas));
+            return carregarTarefas();
+        };
+
+        // Adicionando o botão ao post-it
+        postit.appendChild(avancarStatusBtn);
+
+        //Criando o botão de retroceder status da tarefa
+        let retrocederStatusBtn = document.createElement("button");
+        retrocederStatusBtn.textContent = "<<";
+        retrocederStatusBtn.classList.add("retrocede-btn");
+        retrocederStatusBtn.onclick = function() {
+            if (tarefa.status === "em_producao") {
+                tarefa.status = "para_fazer";
+            } else if (tarefa.status === "finalizada") {
+                tarefa.status = "em_producao";
+            }
+
+            localStorage.setItem("tarefas", JSON.stringify(tarefas));
+            return carregarTarefas();
+        };
+
+        // Adicionando o botão ao post-it
+        postit.appendChild(retrocederStatusBtn);
+
+        // Adicionando o post-it à coluna correspondente
         
         if (tarefa.status === "para_fazer") {
             document.getElementById("para_fazer").appendChild(postit);
@@ -47,5 +82,6 @@ function carregarTarefas() {
         }  
     });
 }
+
 
 window.onload = carregarTarefas;
