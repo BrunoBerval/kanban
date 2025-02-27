@@ -1,0 +1,68 @@
+.kanban { display: flex; justify-content: space-around; }
+.coluna { width: 30%; padding: 10px; border: 1px solid black; }
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#formTarefa {
+    margin-bottom: 20px;
+}
+
+#board {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.postit {
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    font-size: 11px;
+    position: relative;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    font-weight: bold;
+    transform: rotate(-3deg);
+}
+
+.postit:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.postit::after {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.1);
+    bottom: 0;
+    left: 25%;
+    transform: skewX(-10deg);
+}
+
+
+/* Cores baseadas na urgência */
+.alta { background-color: red; color: white; }
+.media { background-color: yellow; color: black; }
+.baixa { background-color: green; color: white; }
+
+/* Botão de deletar */
+.delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: black;
+    color: white;
+    border: none;
+    padding: 2px 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
